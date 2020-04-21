@@ -1,0 +1,114 @@
+ul {
+  list-style-type: none;
+}
+
+li{
+  font-size: 17px;
+}
+
+.left-column{
+  margin-left: 20%;
+  float:left;
+}
+
+.right-column{
+  margin-left: 50%;
+}
+
+.accordion {
+  margin-top: 100px;
+  z-index: 1 !important;
+  background-color: white !important;
+}
+
+button {
+  width: auto;
+  padding: 5px 20px;
+  height: auto;
+  border: none;
+  border-radius: 11px;
+  background: #64af70;
+  position: relative;
+  box-shadow: 0px 2px 2px 1px #00000080;
+  display: block;
+  font-size: 16px;
+  color: white;
+  transition: .3s;
+  top: 0;
+}
+  button:hover, button:active {
+    background: #4b9257;
+    transition: .3s;
+    /* box-shadow: 0px 0px 1px 1px #00000080; */
+    /* top: 2px; */
+  }
+.mat-action-row {
+  justify-content: center;
+}
+
+* {
+  outline: 0 !important;
+}
+
+::-moz-focus-outer, ::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+.panel:after {
+  content: "";
+  background-image: url(/assets/images/tree1.png);
+  height: 100%;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 15%;
+  top: 0;
+  right: 0;
+}
+
+.panel:before {
+  content: "";
+  background-image: url(/assets/images/tree2.png);
+  height: 100%;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 17%;
+  top: 0;
+  float: left;
+}
+
+.panel{
+  position:relative;  
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  background-color: #ffffff !important;
+}
+
+.fon{
+  z-index:1 !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 4px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #d2d0d4;
+  border-radius: 4px;
+}
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ced1d7;
+  }

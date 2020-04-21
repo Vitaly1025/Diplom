@@ -1,0 +1,53 @@
+<div class="accordion">
+  <mat-accordion class="fon">
+   <mat-expansion-panel  *ngFor="let item of trialPlotCharacteristics" (opened)="getTrees(item.year, item.trial_plot_id)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h3>№ {{item['trial_plot_id']}} </h3>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="panel">
+        <h2 align="center">Данные за последний таксационный {{item.year}} год:</h2>
+        <mat-form-table >
+          <div class="left-column">
+            <ul>
+              <li *ngIf="trialPlotCharacteristics">Область: {{item['region']}} </li>
+              <li *ngIf="trialPlotCharacteristics">Лесхоз: {{item['foresty']}}</li>
+              <li *ngIf="trialPlotCharacteristics">Лесничество: {{item['silviculture']}}</li>
+              <li *ngIf="trialPlotCharacteristics">Снимок №: {{item['snapshot_number']}}</li>
+              <li *ngIf="trialPlotCharacteristics">Квартал: {{item['section']}}</li>
+              <li *ngIf="trialPlotCharacteristics">Выдел: {{item['survey']}}<p></li>
+
+              <!--<li>Всего деревьев: {{trees.length}}</li>-->
+              <li>Деловое дерево: {{numberOfBusinessTrees}}</li>
+              <li>Дровяное дерево: {{numberOfWoodTrees}}</li>
+              <li>Целое погибшее дерево: {{numberOfDeadTrees}}</li>
+              <li>Сухостой, у которого нельзя вычислить объём: {{numberOfDeadTreesWithoutVolume}}</li>
+            </ul>
+          </div>
+        </mat-form-table>
+        <mat-form-table>
+          <div class="right-column">
+            <ul>
+              <li *ngIf="trialPlotCharacteristics">X: {{item['x']}}</li>
+              <li *ngIf="trialPlotCharacteristics">Y: {{item['y']}}</li>
+              <li *ngIf="trialPlotCharacteristics">Азимут: {{item['azimuth']}}</li>
+              <li *ngIf="trialPlotCharacteristics">Высота: {{item['height']}}</li>
+              <li *ngIf="trialPlotCharacteristics">Ширина: {{item['width']}}</li>
+              <li *ngIf="trialPlotCharacteristics">Площадь: {{item['area']}}<p></li>
+              <li>Сосна: {{pines?.length}}</li>
+              <li>Ель: {{spruces?.length}}</li>
+              <li>Дуб: {{oaks?.length}}</li>
+              <li>Берёза: {{birches?.length}}</li>
+              <li>Осина: {{aspens?.length}}</li>
+              <li>Ольха чёрная: {{blackAlder?.length}}</li>
+            </ul>
+          </div>
+        </mat-form-table>
+      </div>
+          <mat-action-row>
+            <button mat-button routerLink="/home/trial_plot/{{item['trial_plot_id']}}">Перейти</button>
+          </mat-action-row>
+    </mat-expansion-panel>
+</mat-accordion>
+  </div>
