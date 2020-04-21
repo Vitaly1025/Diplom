@@ -1,0 +1,2 @@
+# Diplom
+Wild shit
