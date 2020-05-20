@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Data.Models
 {
@@ -14,6 +15,7 @@ namespace Data.Models
         public string Name { get; set; }
         public string Cipher { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Tree> Tree { get; set; }
     }
 }

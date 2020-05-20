@@ -1,0 +1,185 @@
+<div class="container">
+<div *ngFor="let leshos of leshozes$ | async">
+  <div class="d-flex justify-content-between text-capitalize h5">
+    <div>
+      <span class="material-icons">
+        place
+      </span>
+      {{ leshos.name }}
+    </div>
+    <div>{{ leshos.lesnichestvo }} лесничество</div>
+  </div>
+  <mat-accordion *ngFor="let plot of leshos.extendTrialPlots">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> № {{ plot.number }} </mat-panel-title>
+        <mat-panel-description>
+          пробная площадь
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="container d-flex">
+        <div class="col-6">
+          <mat-list>
+            <mat-list-item>
+              <div class="w-100 d-flex justify-content-between">
+                <div>Выдел:</div>
+                <div>{{ leshos.vydel }}</div>
+              </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <div class="w-100 d-flex justify-content-between">
+                <div>Квартал:</div>
+                <div>{{ leshos.kvartal }}</div>
+              </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <div class="w-100 d-flex justify-content-between">
+                <div>Количество деревьев:</div>
+                <div>{{ plot.treeCount }}</div>
+              </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <div class="w-100 d-flex justify-content-between">
+                <div>Азимут:</div>
+                <div>{{ plot.az }} °</div>
+              </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <div class="w-100 d-flex justify-content-between">
+                <div>Площадь:</div>
+                <div>{{ plot.square }} м²</div>
+              </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <div class="w-100 d-flex justify-content-between">
+                <div>Длина:</div>
+                <div>{{ plot.length }} м</div>
+              </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <div class="w-100 d-flex justify-content-between">
+                <div>Ширина:</div>
+                <div>{{ plot.weight }} м</div>
+              </div>
+            </mat-list-item>
+          </mat-list>
+        </div>
+        <div class="col-6 text-center">
+          <div *ngIf="plot.breedStat">
+            <canvas
+              baseChart
+              [data]="plot.breedStat | tochartData"
+              [labels]="plot.breedStat | tochartData: true"
+              [chartType]="pieChartType"
+              [options]="pieChartOptions"
+            >
+            </canvas>
+          </div>
+          <button
+            mat-raised-button
+            color="accent"
+            class="mt-5"
+            [routerLink]="['plot', leshos.id, plot.number]"
+          >
+            Перейти к стационару
+          </button>
+        </div>
+      </div>
+      <div class="container d-flex flex-column">
+        <div class="col">
+          <div class="text-center h5">Основные таксационные показатели</div>
+        </div>
+        <mat-tab-group>
+          <mat-tab
+            *ngFor="let structure of plot.structureStat; let index = index"
+            [label]="structure.taxationYear"
+          >
+          <div class="col d-flex justify-content-between">
+            <div class="h6">Запас деревьев:</div>
+            <div> 
+              {{structure.zapas | number}}
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+            <div class="col">
+              <div class="h6">Средний возраст деревьев:</div>
+              <div class="horizontalChart">
+                <canvas
+                  baseChart
+                  [datasets]="structure.ageStat | toStatData"
+                  [legend]="structure.ageStat | toStatData: true"
+                  [chartType]="barChartType"
+                  [options]="barChartOptions"
+                >
+                </canvas>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="col">
+              <div class="h6">Средний диаметр деревьев:</div>
+              <div class="horizontalChart">
+                <canvas
+                  baseChart
+                  [datasets]="structure.diametrStat | toStatData"
+                  [legend]="structure.diametrStat | toStatData: true"
+                  [chartType]="barChartType"
+                  [options]="barChartOptions"
+                >
+                </canvas>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="col">
+              <div class="h6">Объём по породам деревьев:</div>
+              <div class="horizontalChart">
+                <canvas
+                  baseChart
+                  [datasets]="structure.volumeStat | toStatData"
+                  [legend]="structure.volumeStat | toStatData: true"
+                  [chartType]="barChartType"
+                  [options]="barChartOptions"
+                >
+                </canvas>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="col">
+              <div class="h6">Средняя высота деревьев:</div>
+              <div class="horizontalChart">
+                <canvas
+                  baseChart
+                  [datasets]="structure.lengthStat | toStatData"
+                  [legend]="structure.lengthStat | toStatData: true"
+                  [chartType]="barChartType"
+                  [options]="barChartOptions"
+                >
+                </canvas>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="col">
+              <div class="h6">Полнота деревьев:</div>
+              <div class="horizontalChart">
+                <canvas
+                  baseChart
+                  [datasets]="structure.polnotaStat | toStatData"
+                  [legend]="structure.polnotaStat | toStatData: true"
+                  [chartType]="barChartType"
+                  [options]="barChartOptions"
+                >
+                </canvas>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+</div>

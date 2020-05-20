@@ -7,13 +7,13 @@ namespace Data.Models
     {
         public ForestType()
         {
-            Years = new HashSet<Years>();
+            Leshos = new HashSet<Leshos>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public string Cipher { get; set; }
 
-        public virtual ICollection<Years> Years { get; set; }
+        public virtual ICollection<Leshos> Leshos { get; set; }
     }
 }

@@ -39,7 +39,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Breed");
+                    b.ToTable("sp_por");
                 });
 
             modelBuilder.Entity("Data.Models.ForestType", b =>
@@ -62,7 +62,96 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ForestType");
+                    b.ToTable("sp_tl");
+                });
+
+            modelBuilder.Entity("Data.Models.Leshos", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("IdForestType")
+                        .HasColumnName("id_tl")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Kvartal")
+                        .HasColumnName("kv")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Lesnichestvo")
+                        .IsRequired()
+                        .HasColumnName("lesnich")
+                        .HasColumnType("character varying(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnName("name")
+                        .HasColumnType("character varying(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<int>("Vydel")
+                        .HasColumnName("vydel")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdForestType");
+
+                    b.ToTable("st_leshoz");
+                });
+
+            modelBuilder.Entity("Data.Models.Privyazka", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<double>("Az")
+                        .HasColumnName("az")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("IdPlot")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("IdPlotNavigationId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("L")
+                        .HasColumnName("l")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Number")
+                        .HasColumnName("number")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdPlotNavigationId");
+
+                    b.ToTable("st_privjazka");
+                });
+
+            modelBuilder.Entity("Data.Models.TaxationYears", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("Year")
+                        .HasColumnName("year")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("st_taxation_year");
                 });
 
             modelBuilder.Entity("Data.Models.TechnicalSuitability", b =>
@@ -85,7 +174,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TechnicalSuitability");
+                    b.ToTable("sp_techn_godnosti");
                 });
 
             modelBuilder.Entity("Data.Models.Tree", b =>
@@ -97,19 +186,19 @@ namespace Data.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("IdBreed")
-                        .HasColumnName("id_breed")
+                        .HasColumnName("id_sp_por")
                         .HasColumnType("integer");
 
                     b.Property<int>("IdPlot")
                         .HasColumnName("id_plot")
                         .HasColumnType("integer");
 
-                    b.Property<int>("IdProperty")
-                        .HasColumnName("id_property")
-                        .HasColumnType("integer");
-
                     b.Property<int>("Number")
                         .HasColumnName("number")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("NumberKvadrata")
+                        .HasColumnName("number_kvadrata")
                         .HasColumnType("integer");
 
                     b.Property<double>("X")
@@ -126,9 +215,7 @@ namespace Data.Migrations
 
                     b.HasIndex("IdPlot");
 
-                    b.HasIndex("IdProperty");
-
-                    b.ToTable("Tree");
+                    b.ToTable("st_tree");
                 });
 
             modelBuilder.Entity("Data.Models.TreeProperty", b =>
@@ -140,43 +227,64 @@ namespace Data.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("Age")
-                        .HasColumnName("age")
+                        .HasColumnName("voz")
                         .HasColumnType("integer");
 
                     b.Property<double?>("CrownDiametrNs")
-                        .HasColumnName("crown_diametrNS")
+                        .HasColumnName("d_kr_ns")
                         .HasColumnType("double precision");
 
                     b.Property<double?>("CrownDiametrWe")
-                        .HasColumnName("crown_diametrWE")
+                        .HasColumnName("d_kr_we")
                         .HasColumnType("double precision");
 
                     b.Property<double?>("CrownLength")
-                        .HasColumnName("crownLength")
+                        .HasColumnName("h_nach_kr")
                         .HasColumnType("double precision");
 
                     b.Property<double>("DiametrNs")
-                        .HasColumnName("diametrNS")
+                        .HasColumnName("d_ns")
                         .HasColumnType("double precision");
 
                     b.Property<double>("DiametrWe")
-                        .HasColumnName("diametrWE")
+                        .HasColumnName("d_ws")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("FormaKrHorizontal")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FormaKrVertical")
+                        .HasColumnType("text");
+
+                    b.Property<double?>("HMaxKr")
                         .HasColumnType("double precision");
 
                     b.Property<double>("Height")
-                        .HasColumnName("height")
+                        .HasColumnName("h")
                         .HasColumnType("double precision");
 
                     b.Property<int>("IdCraft")
-                        .HasColumnName("id_craft")
+                        .HasColumnName("id_sp_craft")
                         .HasColumnType("integer");
 
                     b.Property<int>("IdSuitability")
-                        .HasColumnName("id_suitability")
+                        .HasColumnName("id_sp_techn")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IdTaxationYears")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IdTree")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("Jar")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("Pokolenie")
                         .HasColumnType("integer");
 
                     b.Property<int>("TaxationYear")
-                        .HasColumnName("taxationYear")
+                        .HasColumnName("year_taxation")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -185,7 +293,11 @@ namespace Data.Migrations
 
                     b.HasIndex("IdSuitability");
 
-                    b.ToTable("TreeProperty");
+                    b.HasIndex("IdTaxationYears");
+
+                    b.HasIndex("IdTree");
+
+                    b.ToTable("st_tree_characteristics");
                 });
 
             modelBuilder.Entity("Data.Models.TrialPlot", b =>
@@ -198,6 +310,10 @@ namespace Data.Migrations
 
                     b.Property<double>("Az")
                         .HasColumnType("double precision");
+
+                    b.Property<int>("IdLeshos")
+                        .HasColumnName("id_leshoz")
+                        .HasColumnType("integer");
 
                     b.Property<double>("Length")
                         .HasColumnName("length")
@@ -225,56 +341,9 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TrialPlot");
-                });
+                    b.HasIndex("IdLeshos");
 
-            modelBuilder.Entity("Data.Models.Years", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("IdForestType")
-                        .HasColumnName("id_forestType")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("IdPlot")
-                        .HasColumnName("id_plot")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Kvartal")
-                        .HasColumnName("kvartal")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Leshoz")
-                        .IsRequired()
-                        .HasColumnName("leshoz")
-                        .HasColumnType("character varying(255)")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("Lesnichestvo")
-                        .IsRequired()
-                        .HasColumnName("lesnichestvo")
-                        .HasColumnType("character varying(255)")
-                        .HasMaxLength(255);
-
-                    b.Property<int>("Vydel")
-                        .HasColumnName("vydel")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Year")
-                        .HasColumnName("year")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdForestType");
-
-                    b.HasIndex("IdPlot");
-
-                    b.ToTable("Years");
+                    b.ToTable("st_trial_plot");
                 });
 
             modelBuilder.Entity("Data.Models.СraftСategory", b =>
@@ -297,7 +366,23 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("СraftСategory");
+                    b.ToTable("sp_category_craft");
+                });
+
+            modelBuilder.Entity("Data.Models.Leshos", b =>
+                {
+                    b.HasOne("Data.Models.ForestType", "IdForestTypeNavigation")
+                        .WithMany("Leshos")
+                        .HasForeignKey("IdForestType")
+                        .HasConstraintName("Leshos_fk0")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.Models.Privyazka", b =>
+                {
+                    b.HasOne("Data.Models.TrialPlot", "IdPlotNavigation")
+                        .WithMany()
+                        .HasForeignKey("IdPlotNavigationId");
                 });
 
             modelBuilder.Entity("Data.Models.Tree", b =>
@@ -312,12 +397,6 @@ namespace Data.Migrations
                         .WithMany("Tree")
                         .HasForeignKey("IdPlot")
                         .HasConstraintName("Tree_fk0")
-                        .IsRequired();
-
-                    b.HasOne("Data.Models.TreeProperty", "IdPropertyNavigation")
-                        .WithMany("Tree")
-                        .HasForeignKey("IdProperty")
-                        .HasConstraintName("Tree_fk2")
                         .IsRequired();
                 });
 
@@ -334,20 +413,26 @@ namespace Data.Migrations
                         .HasForeignKey("IdSuitability")
                         .HasConstraintName("TreeProperty_fk0")
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("Data.Models.Years", b =>
-                {
-                    b.HasOne("Data.Models.ForestType", "IdForestTypeNavigation")
-                        .WithMany("Years")
-                        .HasForeignKey("IdForestType")
-                        .HasConstraintName("Years_fk0")
+                    b.HasOne("Data.Models.TaxationYears", "IdTaxationYearsNavigation")
+                        .WithMany("TreeProperties")
+                        .HasForeignKey("IdTaxationYears")
+                        .HasConstraintName("TreeProperty_fk3")
                         .IsRequired();
 
-                    b.HasOne("Data.Models.TrialPlot", "IdPlotNavigation")
-                        .WithMany("Years")
-                        .HasForeignKey("IdPlot")
-                        .HasConstraintName("Years_fk1")
+                    b.HasOne("Data.Models.Tree", "IdTreeNavigation")
+                        .WithMany("TreeProperties")
+                        .HasForeignKey("IdTree")
+                        .HasConstraintName("TreeProperty_fk2")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.Models.TrialPlot", b =>
+                {
+                    b.HasOne("Data.Models.Leshos", "IdLeshosTypeNavigation")
+                        .WithMany("TrialPlots")
+                        .HasForeignKey("IdLeshos")
+                        .HasConstraintName("TrialPlot_fk0")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

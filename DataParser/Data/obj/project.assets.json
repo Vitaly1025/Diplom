@@ -1646,11 +1646,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Учёба\\ДИПЛОМ\\DataParser\\DataParser\\Data\\Data.csproj",
+      "projectUniqueName": "F:\\Учёба\\ДИПЛОМ\\DataParser\\Diplom\\DataParser\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "F:\\Учёба\\ДИПЛОМ\\DataParser\\DataParser\\Data\\Data.csproj",
+      "projectPath": "F:\\Учёба\\ДИПЛОМ\\DataParser\\Diplom\\DataParser\\Data\\Data.csproj",
       "packagesPath": "C:\\Users\\Vitaliy\\.nuget\\packages\\",
-      "outputPath": "F:\\Учёба\\ДИПЛОМ\\DataParser\\DataParser\\Data\\obj\\",
+      "outputPath": "F:\\Учёба\\ДИПЛОМ\\DataParser\\Diplom\\DataParser\\Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

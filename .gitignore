@@ -1,16 +1,18 @@
 # Prerequisites
 *.d
 
-/bin
-/node_modules
-/packages
-/.vs
-/e2e	
+**/bin
+**/node_modules
+**/packages
+**/.vs
+**/e2e	
+
 # Object files
 *.o
 *.ko
 *.obj
 *.elf
+package-lock.json
 
 # Linker output
 *.ilk
@@ -55,3 +57,5 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+.gitignore

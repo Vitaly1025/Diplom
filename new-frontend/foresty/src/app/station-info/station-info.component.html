@@ -1,0 +1,153 @@
+<div class="d-flex mt-1" *ngIf="plotInfo$ | async as plot">
+  <!-- <div class="col-2">
+    
+  </div> -->
+  <div class="col-9">
+    <div class="d-flex justify-content-between">
+      <div class="h4" *ngIf="mapType === 1">
+        Проекции крон деревьев
+      </div>
+      <div class="h4" *ngIf="mapType === 2">
+        Картирование деревьев
+      </div>
+      <div>
+        <mat-slide-toggle
+          (change)="mapType === 1 ? (mapType = 2) : (mapType = 1)"
+          >Изменить вид</mat-slide-toggle
+        >
+      </div>
+    </div>
+    <canvas
+      baseChart
+      id="chart"
+      [datasets]="plot.tree | toBubbleData: mapType"
+      [chartType]="bubbleChartType"
+      [options]="bubbleChartOptions"
+    >
+    </canvas>
+  </div>
+  <div class="col-3">
+    <mat-card>
+      <mat-card-title>
+        Информация о пробной площади
+      </mat-card-title>
+      <mat-card-content>
+        <div>
+          <div class="d-flex justify-content-between">
+            <div>Номер стационара</div>
+            <div>{{ plot.number }}</div>
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+        <div>
+          <div class="d-flex justify-content-between">
+            <div>Количество деревьев</div>
+            <div>{{ plot.tree.length }}</div>
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+        <div>
+          <div class="d-flex justify-content-between">
+            <div>Длина пробной площади</div>
+            <div>{{ plot.length }} м</div>
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+        <div>
+          <div class="d-flex justify-content-between">
+            <div>Ширина пробной площади</div>
+            <div>{{ plot.weight }} м</div>
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+        <div>
+          <div class="d-flex justify-content-between">
+            <div>Площадь стационара</div>
+            <div>{{ plot.weight * plot.length / 10000}} га</div>
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="treeInfo$ | async as tree" class="mt-2">
+      <mat-card-title>
+        Показатели выбранного дерева
+      </mat-card-title>
+      <mat-card-content>
+        <div class="d-flex justify-content-between">
+          <div>Номер дерева</div>
+          <div>{{ tree.number }}</div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="d-flex justify-content-between">
+          <div>Порода дерева</div>
+          <div>{{ tree.idBreedNavigation.name }}</div>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-tab-group>
+          <mat-tab
+            *ngFor="let year of tree.yearProperty; let index = index"
+            [label]="year.year"
+          >
+            <div>
+              <div class="d-flex justify-content-between">
+                <div>Возраст дерева</div>
+                <div>{{ year.treeProperty.age }}</div>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div *ngIf="year.treeProperty.craftName">
+              <div class="d-flex justify-content-between">
+                <div>Крафт дерева</div>
+                <div>{{ year.treeProperty.craftName }}</div>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div>
+              <div class="d-flex justify-content-between">
+                <div>Диаметр кроны дерева СЮ</div>
+                <div>{{ year.treeProperty.crownDiametrNs }}</div>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div>
+              <div class="d-flex justify-content-between">
+                <div>Диаметр кроны дерева ЗВ</div>
+                <div>{{ year.treeProperty.crownDiametrWe }}</div>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div>
+              <div class="d-flex justify-content-between">
+                <div>Высота дерева</div>
+                <div>{{ year.treeProperty.crownLength }}</div>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div>
+              <div class="d-flex justify-content-between">
+                <div>Диаметр ствола дерева СЮ</div>
+                <div>{{ year.treeProperty.diametrNs }}</div>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div>
+              <div class="d-flex justify-content-between">
+                <div>Диаметр ствола дерева ЗВ</div>
+                <div>{{ year.treeProperty.diametrWe }}</div>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div>
+              <div class="d-flex justify-content-between">
+                <div>Категория технической годности</div>
+                <div>{{ year.treeProperty.suitabilityName }}</div>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -10,3 +10,15 @@ F:\Учёба\ДИПЛОМ\DataParser\DataParser\Data\obj\Debug\netcoreapp3.1\Da
 F:\Учёба\ДИПЛОМ\DataParser\DataParser\Data\obj\Debug\netcoreapp3.1\Data.csprojAssemblyReference.cache
 F:\Учёба\ДИПЛОМ\DataParser\DataParser\Data\obj\Debug\netcoreapp3.1\Data.csproj.CoreCompileInputs.cache
 F:\Учёба\ДИПЛОМ\DataParser\DataParser\Data\obj\Debug\netcoreapp3.1\Data.genruntimeconfig.cache
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Data\bin\Debug\netcoreapp3.1\Data.deps.json
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Data\bin\Debug\netcoreapp3.1\Data.runtimeconfig.json
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Data\bin\Debug\netcoreapp3.1\Data.runtimeconfig.dev.json
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Data\bin\Debug\netcoreapp3.1\Data.dll
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Data\bin\Debug\netcoreapp3.1\Data.pdb
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Data\obj\Debug\netcoreapp3.1\Data.csprojAssemblyReference.cache
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Data\obj\Debug\netcoreapp3.1\Data.csproj.CoreCompileInputs.cache
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Data\obj\Debug\netcoreapp3.1\Data.AssemblyInfoInputs.cache
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Data\obj\Debug\netcoreapp3.1\Data.AssemblyInfo.cs
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Data\obj\Debug\netcoreapp3.1\Data.dll
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Data\obj\Debug\netcoreapp3.1\Data.pdb
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Data\obj\Debug\netcoreapp3.1\Data.genruntimeconfig.cache

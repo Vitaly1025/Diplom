@@ -1,0 +1,12 @@
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Services\bin\Debug\netcoreapp3.1\Services.deps.json
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Services\bin\Debug\netcoreapp3.1\Services.dll
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Services\bin\Debug\netcoreapp3.1\Services.pdb
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Services\bin\Debug\netcoreapp3.1\Data.dll
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Services\bin\Debug\netcoreapp3.1\Data.pdb
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Services\obj\Debug\netcoreapp3.1\Services.csprojAssemblyReference.cache
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Services\obj\Debug\netcoreapp3.1\Services.csproj.CoreCompileInputs.cache
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Services\obj\Debug\netcoreapp3.1\Services.AssemblyInfoInputs.cache
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Services\obj\Debug\netcoreapp3.1\Services.AssemblyInfo.cs
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Services\obj\Debug\netcoreapp3.1\Services.csproj.CopyComplete
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Services\obj\Debug\netcoreapp3.1\Services.dll
+F:\Учёба\ДИПЛОМ\DataParser\Diplom\DataParser\Services\obj\Debug\netcoreapp3.1\Services.pdb

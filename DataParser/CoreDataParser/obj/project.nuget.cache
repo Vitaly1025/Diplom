@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "M3VsImHqwx9B5QYXEadmlkrHss1Biq0FasmIRIyOz1pvpHeZWPE6Q7uziXLtHkMcqogQvOBnNmww6P3zJoCtsg==",
+  "dgSpecHash": "0FuQyuWFsX0OGnNCRfhaW0or5tFpNSIrWid+yCuEQWu/9L+9rfE5O9gIW7a0SvAlCewsu7x9+OOotdZs910oXQ==",
   "success": true,
-  "projectFilePath": "F:\\Учёба\\ДИПЛОМ\\DataParser\\DataParser\\CoreDataParser\\CoreDataParser.csproj",
+  "projectFilePath": "F:\\Учёба\\ДИПЛОМ\\DataParser\\Diplom\\DataParser\\CoreDataParser\\CoreDataParser.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Vitaliy\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\Vitaliy\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",

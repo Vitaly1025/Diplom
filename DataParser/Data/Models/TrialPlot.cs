@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Data.Response;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace Data.Models
 {
@@ -8,7 +11,6 @@ namespace Data.Models
         public TrialPlot()
         {
             Tree = new HashSet<Tree>();
-            Years = new HashSet<Years>();
         }
 
         public int Id { get; set; }
@@ -19,8 +21,11 @@ namespace Data.Models
         public double Length { get; set; }
         public int Weight { get; set; }
         public double Square { get; set; }
+        public int IdLeshos { get; set; } 
 
+        [JsonIgnore]
+        public virtual Leshos IdLeshosTypeNavigation { get; set; }
         public virtual ICollection<Tree> Tree { get; set; }
-        public virtual ICollection<Years> Years { get; set; }
+
     }
 }

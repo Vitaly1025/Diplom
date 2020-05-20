@@ -1,0 +1,20 @@
+{
+    "api": "https://localhost:44371",
+    "modules": [
+        {
+            "name": "Просмотр лесхозов",
+            "link": "",
+            "icon": "assignment"
+        },
+        {
+            "name": "Информация по стационару",
+            "link": "currentorders",
+            "icon": "info"
+        },
+        {
+            "name": "Управление данными",
+            "link": "manage",
+            "icon": "dynamic_feed"
+        }
+    ]
+}
