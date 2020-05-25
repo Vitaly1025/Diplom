@@ -1,7 +1,5 @@
-<div class="d-flex mt-1" *ngIf="plotInfo$ | async as plot">
-  <!-- <div class="col-2">
-    
-  </div> -->
+<div *ngIf="plotInfo$ | async as plot">
+<div class="d-flex mt-1" >
   <div class="col-9">
     <div class="d-flex justify-content-between">
       <div class="h4" *ngIf="mapType === 1">
@@ -68,6 +66,17 @@
           <mat-divider></mat-divider>
         </div>
       </mat-card-content>
+    </mat-card>
+    <mat-card class="mt-2">
+      <mat-card-title>
+        Открыть графики зависимостей	
+      </mat-card-title>
+      <mat-button-toggle-group aria-label="Font Style"
+                  (change)="ChangeDependency($event)">
+        <mat-button-toggle value="1">Берёза</mat-button-toggle>
+        <mat-button-toggle value="2">Сосна</mat-button-toggle>
+        <mat-button-toggle value="3">Ель</mat-button-toggle>
+      </mat-button-toggle-group>
     </mat-card>
     <mat-card *ngIf="treeInfo$ | async as tree" class="mt-2">
       <mat-card-title>
@@ -150,4 +159,47 @@
       </mat-card-content>
     </mat-card>
   </div>
+  
+</div>
+<mat-card class="col-8 mx-auto mt-2" 
+id="#dependency"
+*ngIf="(dependencyBreed$ | async) != 0"
+>
+  <div>
+  <div class="h5"> График зависимости высоты от диаметра </div>
+      <canvas
+      
+      baseChart
+      [datasets]="plot.tree | toHeightDiametr : (dependencyBreed$ | async) : 0"
+      [chartType]="scatterChartType"
+      [options]="lineChartOptions"
+    >
+    </canvas>
+  </div>
+
+  <div>
+    <div class="h5"> График зависимости высоты начала кроны от диаметра </div>
+        <canvas
+        
+        baseChart
+        [datasets]="plot.tree | toHeightDiametr : (dependencyBreed$ | async) : 1"
+        [chartType]="scatterChartType"
+        [options]="lineChartOptions"
+      >
+      </canvas>
+    </div>
+
+    <div>
+      <div class="h5"> График зависимости максимального диаметра кроны от диаметра </div>
+          <canvas
+          
+          baseChart
+          [datasets]="plot.tree | toHeightDiametr : (dependencyBreed$ | async) : 2"
+          [chartType]="scatterChartType"
+          [options]="lineChartOptions"
+        >
+        </canvas>
+      </div>
+    </mat-card>
+
 </div>

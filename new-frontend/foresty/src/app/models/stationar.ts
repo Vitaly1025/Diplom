@@ -40,7 +40,7 @@ export interface TreeProperty{
     age:               number;
     jar:               string;
     pokolenie:         string;
-    hMaxKr:            string;
+    heightNaibDiametra:            number;
     formaKrHorizontal: string;
     formaKrVertical:   string;
     height:            number;
@@ -72,8 +72,30 @@ export class BubbleChartData implements ChartPoint{
         this.treeNumber = treeNumber;
     }
 }
+
+export class LineChartData implements ChartPoint{
+    public x: number;
+    public y: number;
+    constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+    }
+}
 export enum MapType {
     BubbleCrown = 1,
     BubbleStvol,
     Right
+}
+
+export enum DependencyGraph{
+    HeightDiametr = 0,
+    HeightBeginKronDiametr,
+    MaxDiametrDiametr
+}
+
+export enum PorodaZnach{
+    Nothing = 0,
+    Bereza,
+    Sosna,
+    El
 }

@@ -1,13 +1,12 @@
 export interface Leshos {
     extendTrialPlots:       ExtendTrialPlot[];
     id:                     number;
-    idForestType:           number;
     name:                   string;
     lesnichestvo:           string;
     kvartal:                number;
     vydel:                  number;
     trialPlots:             any[];
-    idForestTypeNavigation: null;
+    forestType:             string;
 }
 
 export interface ExtendTrialPlot {
@@ -41,7 +40,7 @@ export interface StructureStat {
 }
 
 export interface Stat {
-    С: number;
-    Е: number;
-    Б: number;
+    S: number;
+    E: number;
+    B: number;
 }

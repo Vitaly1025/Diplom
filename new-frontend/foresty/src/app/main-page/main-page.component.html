@@ -36,6 +36,20 @@
             <mat-divider></mat-divider>
             <mat-list-item>
               <div class="w-100 d-flex justify-content-between">
+                <div>Тип леса:</div>
+                <div>{{ leshos.forestType }}</div>
+              </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <div class="w-100 d-flex justify-content-between">
+                <div>ТУМ:</div>
+                <div>{{ plot.tumName }}</div>
+              </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <div class="w-100 d-flex justify-content-between">
                 <div>Количество деревьев:</div>
                 <div>{{ plot.treeCount }}</div>
               </div>
@@ -43,15 +57,8 @@
             <mat-divider></mat-divider>
             <mat-list-item>
               <div class="w-100 d-flex justify-content-between">
-                <div>Азимут:</div>
-                <div>{{ plot.az }} °</div>
-              </div>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-              <div class="w-100 d-flex justify-content-between">
                 <div>Площадь:</div>
-                <div>{{ plot.square }} м²</div>
+                <div>{{ plot.square }} Га</div>
               </div>
             </mat-list-item>
             <mat-divider></mat-divider>

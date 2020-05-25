@@ -21,7 +21,7 @@ export class ToBubbleDataPipe implements PipeTransform {
             {
               label: treeGroup.map(t => t.idBreedNavigation.name)[0],
               data: treeGroup.map(t => (new BubbleChartData(t.x, t.y, t.yearProperty.length > 0 ? (t.yearProperty[0].treeProperty.crownDiametrNs + t.yearProperty[0].treeProperty.crownDiametrWe) / 2 * 10 : 1, t.number))),
-              backgroundColor: treeGroup.map(t => t.idBreedNavigation.cipher)[0] == 'С' ? 'rgba(197,225,165,0.7)': treeGroup.map(t => t.idBreedNavigation.cipher)[0] == 'Б'?  '#212121' : 'rgba(27,94,32,0.7)'
+              backgroundColor: treeGroup.map(t => t.idBreedNavigation.cipher)[0] == 'S' ? 'rgba(197,225,165,0.7)': treeGroup.map(t => t.idBreedNavigation.cipher)[0] == 'B'?  '#212121' : 'rgba(27,94,32,0.7)'
             }
           )
       });
@@ -38,7 +38,7 @@ export class ToBubbleDataPipe implements PipeTransform {
             {
               label: treeGroup.map(t => t.idBreedNavigation.name)[0],
               data: treeGroup.map(t => (new BubbleChartData(t.x, t.y, t.yearProperty.length > 0 ? (t.yearProperty[0].treeProperty.diametrNs + t.yearProperty[0].treeProperty.diametrWe) / 20  : 1, t.number))),
-              backgroundColor: treeGroup.map(t => t.idBreedNavigation.cipher)[0] == 'С' ? '#c5e1a5': treeGroup.map(t => t.idBreedNavigation.cipher)[0] == 'Б'?  '#212121' : '#1b5e20'
+              backgroundColor: treeGroup.map(t => t.idBreedNavigation.cipher)[0] == 'S' ? '#c5e1a5': treeGroup.map(t => t.idBreedNavigation.cipher)[0] == 'B'?  '#212121' : '#1b5e20'
             }
           )
       });

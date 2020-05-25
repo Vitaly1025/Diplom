@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MainService } from '../services/main.service';
 import { StationarService } from '../services/stationar.service';
-import { Plot, Tree } from '../models/stationar';
-import { Observable, Subject } from 'rxjs';
+import { Plot, Tree, PorodaZnach } from '../models/stationar';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { ChartType, ChartOptions } from 'chart.js';
 import { MapType } from '../models/stationar';
 import * as Chart from 'chart.js';
+import * as regression from 'regression';
+
 @Component({
   selector: 'app-station-info',
   templateUrl: './station-info.component.html',
@@ -18,9 +20,78 @@ export class StationInfoComponent implements OnInit {
   public plotInfo$ = new Observable<Plot>();
   public treeInfo$ = new Observable<Tree>();
   public bubbleChartType: ChartType = 'bubble';
+  public scatterChartType: ChartType = 'scatter';
   public mapType: MapType = 1;
+
+  public dependencyBreed$ = new BehaviorSubject<PorodaZnach>(0);
   public treeNumber$ = new Subject<number>();
 
+  public lineChartOptions: ChartOptions = {
+    responsive: true,
+    animation: {
+      onComplete: function () {
+        var chartInstance = this.chart;
+        var ctx = chartInstance.ctx;
+        var height = chartInstance.controller.boxes[0].bottom;
+        ctx.textAlign = "center";
+        Chart.helpers.each(this.data.datasets.forEach(function (dataset, i) {
+          var meta = chartInstance.controller.getDatasetMeta(i);
+          var data = dataset.data.map(t => {
+              let b = [];
+              b.push(t.x ? +t.x : 0, t.y ? +t.y : 0);
+              return b;
+          });
+      
+          var dataInCanvasCoordinates = meta.data.map(t => {
+            let b = [];
+            b.push(isNaN(t._model.x) ? 0 : +t._model.x, isNaN(t._model.y) ? 0 : +t._model.y );
+            return b
+        }); 
+          var arrCoordinat = [];
+          dataInCanvasCoordinates.forEach(element => {
+            arrCoordinat.push(element);
+          });
+
+          var arr = [];
+          data.forEach(element => {
+            arr.push(element);
+          });
+
+          var funcCoordinates = regression.polynomial(arrCoordinat, { order: 2, precision: 40 });
+          var func =            regression.polynomial(arr, { order: 2, precision: 40 });
+          
+          
+          
+          var xMax = chartInstance.boxes[2].right;
+          var currentX = 0;
+          var step = 10;
+          var arr = [];
+          while(xMax > currentX){
+            arrCoordinat.push(new Object({ x: currentX, y: funcCoordinates.equation[0]*Math.pow(currentX,2) + funcCoordinates.equation[1] * currentX + funcCoordinates.equation[2] }));
+            currentX += step;
+          }
+          ctx.moveTo(chartInstance.boxes[3].right, chartInstance.boxes[3].bottom);
+          ctx.lineJoin = 'round';
+          ctx.beginPath();
+          arrCoordinat.forEach((point) => {
+              ctx.lineTo(point.x,point.y);
+          });
+        //   func.points.forEach((point) => {
+        //     ctx.lineTo(point[0],point[1]);
+        // });
+          ctx.stroke();
+          ctx.font = "20px Arial";
+          ctx.fillStyle = "white"
+          ctx.fillText(`y= ${func.equation[0].toFixed(4)}x² ${func.equation[1] > 0 ? '+'+func.equation[1].toFixed(4): func.equation[1].toFixed(4)}x ${func.equation[2] > 0 ? '+'+func.equation[2].toFixed(4): func.equation[2].toFixed(4)}`, chartInstance.boxes[2].right - 150, chartInstance.boxes[2].bottom - 50);
+        }),this);
+      }
+    },
+    legend: {
+      labels: {
+        fontColor: 'white'
+      }
+    }
+  }
 
   public bubbleChartOptions: ChartOptions = {
     animation: {
@@ -32,7 +103,6 @@ export class StationInfoComponent implements OnInit {
         Chart.helpers.each(this.data.datasets.forEach(function (dataset, i) {
           var meta = chartInstance.controller.getDatasetMeta(i);
           Chart.helpers.each(meta.data.forEach(function (bar, index) {
-            debugger;
             ctx.fillText(dataset.data[index].treeNumber, bar._model.x, bar._model.y);
           }),this)
         }),this);
@@ -69,7 +139,10 @@ export class StationInfoComponent implements OnInit {
     },
     responsive: true,
     legend: {
-      display: true
+      display: true,
+      labels: {
+        fontColor: 'white'
+      }
     },
     scales: {
       xAxes: [
@@ -88,6 +161,11 @@ export class StationInfoComponent implements OnInit {
       ],
     },
   };
+
+
+  public ChangeDependency(event){
+      this.dependencyBreed$.next(+event.value);
+  }
 
   constructor(private route: ActivatedRoute, private api: StationarService) {
     this.leshosId = +route.snapshot.params.id;

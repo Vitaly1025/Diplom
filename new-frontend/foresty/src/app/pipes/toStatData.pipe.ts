@@ -9,7 +9,7 @@ export class ToStatDataPipe implements PipeTransform {
   transform(value: Stat, args?: any): any {
     if(!args){
       return [{  
-        data: [value.Б.toFixed(2)],
+        data: [value.B.toFixed(2)],
         backgroundColor: "rgba(179,150,78,1)",
         label: 'Берёза',
         barThickness: 20, 
@@ -20,7 +20,7 @@ export class ToStatDataPipe implements PipeTransform {
         hoverBackgroundColor: "rgba(183,150,78,1)"
       },
       {  
-        data: [value.Е.toFixed(2)],
+        data: [value.E.toFixed(2)],
         backgroundColor: "rgba(58,123,167,1)",
         label: 'Ель',
         barThickness: 20, 
@@ -31,7 +31,7 @@ export class ToStatDataPipe implements PipeTransform {
         hoverBackgroundColor: "rgba(58,123,172,1)"
       },
       {  
-        data: [value.С.toFixed(2)],
+        data: [value.S.toFixed(2)],
         backgroundColor: "rgba(179,85,105,1)",
         label: 'Сосна',
         barThickness: 20, 
