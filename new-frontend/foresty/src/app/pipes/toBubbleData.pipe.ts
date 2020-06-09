@@ -20,7 +20,7 @@ export class ToBubbleDataPipe implements PipeTransform {
           specialArray.push(
             {
               label: treeGroup.map(t => t.idBreedNavigation.name)[0],
-              data: treeGroup.map(t => (new BubbleChartData(t.x, t.y, t.yearProperty.length > 0 ? (t.yearProperty[0].treeProperty.crownDiametrNs + t.yearProperty[0].treeProperty.crownDiametrWe) / 2 * 10 : 1, t.number))),
+              data: treeGroup.map(t => (new BubbleChartData(t.x, t.y, t.yearProperty.length > 0 ? ((t.yearProperty[0].treeProperty.crownDiametrNs + t.yearProperty[0].treeProperty.crownDiametrWe) / 2 as any).toFixed(2) * 5 : 1, t.number))),
               backgroundColor: treeGroup.map(t => t.idBreedNavigation.cipher)[0] == 'S' ? 'rgba(197,225,165,0.7)': treeGroup.map(t => t.idBreedNavigation.cipher)[0] == 'B'?  '#212121' : 'rgba(27,94,32,0.7)'
             }
           )
@@ -37,7 +37,7 @@ export class ToBubbleDataPipe implements PipeTransform {
           specialArray.push(
             {
               label: treeGroup.map(t => t.idBreedNavigation.name)[0],
-              data: treeGroup.map(t => (new BubbleChartData(t.x, t.y, t.yearProperty.length > 0 ? (t.yearProperty[0].treeProperty.diametrNs + t.yearProperty[0].treeProperty.diametrWe) / 20  : 1, t.number))),
+              data: treeGroup.map(t => (new BubbleChartData(t.x, t.y, t.yearProperty.length > 0 ? ((t.yearProperty[0].treeProperty.diametrNs + t.yearProperty[0].treeProperty.diametrWe) / 20 as any).toFixed()  : 1, t.number))),
               backgroundColor: treeGroup.map(t => t.idBreedNavigation.cipher)[0] == 'S' ? '#c5e1a5': treeGroup.map(t => t.idBreedNavigation.cipher)[0] == 'B'?  '#212121' : '#1b5e20'
             }
           )

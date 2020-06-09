@@ -40,6 +40,7 @@ export interface StructureStat {
 }
 
 export interface Stat {
+    OS: number;
     S: number;
     E: number;
     B: number;

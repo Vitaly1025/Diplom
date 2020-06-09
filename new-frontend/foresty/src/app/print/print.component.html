@@ -1,0 +1,83 @@
+<div class="print-container" *ngIf="plot$ | async as plot">
+<div class="container">
+  <div class="text-center text-dark h4">Карта квадратов</div>
+  <div class="d-flex" *ngFor="let rowCount of plot.rowCount">
+      <div class="
+                  cell
+                  col 
+                  border 
+                  text-dark 
+                  text-center
+                  " 
+            *ngFor="let length of plot.rowLength"> 
+            {{length + (rowCount * plot.rowLength.length)}} 
+      </div>
+  </div>
+</div>
+
+
+  <div *ngFor="let row of plot.row">
+    <div *ngFor="let kvadrat of row.treeDict">
+      <div class="container text-dark">
+        <div class="h4 text-center">
+          Номер квадрата: {{ kvadrat.numberKvadrata }}
+        </div>
+        <div class="d-flex">
+          <div class="col-6 border mx-auto">
+            <canvas
+              baseChart
+              id="chart"
+              [datasets]="kvadrat.trees | toBubbleData: mapType"
+              [chartType]="bubbleChartType"
+              [options]="bubbleChartOptions"
+            >
+              
+            </canvas>
+          </div>
+     
+        </div>
+        <div class="d-flex">
+        <div class="col" *ngFor="let tree of kvadrat.trees">
+          <div class="h6 text-center">Номер дерева: {{tree.number}}</div>
+          <div>
+            <div>Диаметр ствола С-Ю</div>
+            <div class="border w-100 field"></div>
+          </div>
+          <div>
+            <div>Диаметр ствола З-В</div>
+            <div class="border w-100 field"></div>
+          </div>
+          <div>
+            <div>Высота ствола</div>
+            <div class="border w-100 field"></div>
+          </div>
+          <div>
+            <div>Высота начала кроны</div>
+            <div class="border w-100 field"></div>
+          </div>
+          <div>
+            <div>Высота наиб диаметра</div>
+            <div class="border w-100 field"></div>
+          </div>
+          <div>
+            <div>Диаметр кроны С-Ю</div>
+            <div class="border w-100 field"></div>
+          </div>
+          <div>
+            <div>Диаметр кроны З-В</div>
+            <div class="border w-100 field"></div>
+          </div>
+          <div>
+            <div>Категория технической годности</div>
+            <div class="border w-100 field"></div>
+          </div>
+          <div>
+            <div>Категория крафта</div>
+            <div class="border w-100 field"></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

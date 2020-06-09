@@ -1,3 +1,4 @@
+import { MapType } from './../models/stationar';
 import { Leshos } from './../models/general';
 import { MainService } from './../services/main.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,6 +6,7 @@ import { Subject, Observable } from 'rxjs';
 import { ChartType, ChartOptions } from 'chart.js';
 import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
 import * as Chart from 'chart.js';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -16,8 +18,18 @@ import * as Chart from 'chart.js';
 export class MainPageComponent implements OnInit {
   public leshozes$ = new Observable<Leshos[]>();
 
-  constructor(api: MainService) { 
-    api.getAllLeshozes();
+  public mapType: MapType = 1;
+
+
+  constructor(api: MainService,private route: ActivatedRoute) { 
+    if(+route.snapshot.params.trialplotId){
+      api.getSelectdLeshoz(+route.snapshot.params.trialplotId);
+      console.log(+route.snapshot.params.trialplotId);
+    }
+    else{
+      api.getAllLeshozes();
+    }
+    
     this.leshozes$ = api.leshozesList;
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();

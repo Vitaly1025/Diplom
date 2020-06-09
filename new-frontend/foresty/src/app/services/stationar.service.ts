@@ -1,4 +1,4 @@
-import { Tree } from './../models/stationar';
+import { Tree, PlotInfo } from './../models/stationar';
 import { TreeInfoRequest } from './../models/requests/treeinforequest';
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
@@ -12,8 +12,13 @@ import { Subject } from 'rxjs';
 export class StationarService {
 public plotInfo$ = new Subject<Plot>();
 public treeInfo$ = new Subject<Tree>();
+public separatedplotInfo$ = new Subject<PlotInfo>();
+
 public get plotInfo() {
     return this.plotInfo$.asObservable();
+}
+public get separatedplotInfo() {
+  return this.separatedplotInfo$.asObservable();
 }
 public get treeInfo() {
   return this.treeInfo$.asObservable();
@@ -24,6 +29,12 @@ public GetPlotInfo(idLeshos: number, plotNumber: number){
   this.http.sendPostRequest('ConstantTrialPlot', 'getPlotInfo', ({ Id: idLeshos, PlotNumber: plotNumber }) as PlotInfoRequest)
   .subscribe(resp => { 
       this.plotInfo$.next(resp);
+  });
+}
+public GetSeparetedPlotInfo(idLeshos: number, plotNumber: number){
+  this.http.sendGetRequest('ConstantTrialPlot', `getSeparatedPlotInfo/?id=${idLeshos}&number=${plotNumber}`, null)
+  .subscribe(resp => { 
+      this.separatedplotInfo$.next(new PlotInfo(resp));
   });
 }
 public GetTreeInfo(idLeshos: number, plotNumber: number, treeNumber: number){

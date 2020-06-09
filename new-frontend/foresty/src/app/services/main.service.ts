@@ -15,6 +15,13 @@ export class MainService {
   }
 
   constructor(private http: HttpService) {  }
+  
+  public getSelectdLeshoz(plotId: number){
+    this.http.sendGetRequest('ConstantTrialPlot', `getInfoAllLeshozes/${plotId}`, null)
+    .subscribe(resp => { 
+      this.leshozes$.next(resp)
+    });
+}  
 
   public getAllLeshozes(){
       this.http.sendGetRequest('ConstantTrialPlot', 'getInfoAllLeshozes', null)

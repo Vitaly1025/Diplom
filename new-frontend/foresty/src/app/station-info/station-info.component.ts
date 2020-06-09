@@ -60,8 +60,6 @@ export class StationInfoComponent implements OnInit {
           var funcCoordinates = regression.polynomial(arrCoordinat, { order: 2, precision: 40 });
           var func =            regression.polynomial(arr, { order: 2, precision: 40 });
           
-          
-          
           var xMax = chartInstance.boxes[2].right;
           var currentX = 0;
           var step = 10;
@@ -76,12 +74,11 @@ export class StationInfoComponent implements OnInit {
           arrCoordinat.forEach((point) => {
               ctx.lineTo(point.x,point.y);
           });
-        //   func.points.forEach((point) => {
-        //     ctx.lineTo(point[0],point[1]);
-        // });
+  
           ctx.stroke();
           ctx.font = "20px Arial";
           ctx.fillStyle = "white"
+          ctx.fillText(`R= ${func.r2.toFixed(4)}`, chartInstance.boxes[2].right - 150, chartInstance.boxes[2].bottom - 80);
           ctx.fillText(`y= ${func.equation[0].toFixed(4)}x² ${func.equation[1] > 0 ? '+'+func.equation[1].toFixed(4): func.equation[1].toFixed(4)}x ${func.equation[2] > 0 ? '+'+func.equation[2].toFixed(4): func.equation[2].toFixed(4)}`, chartInstance.boxes[2].right - 150, chartInstance.boxes[2].bottom - 50);
         }),this);
       }
@@ -91,6 +88,12 @@ export class StationInfoComponent implements OnInit {
         fontColor: 'white'
       }
     }
+  }
+ 
+  public PrintWindow(){
+      let str = `${location.origin}/print/${this.leshosId}/${this.plotNumber}`;
+      console.log(str);
+      window.open(str,'_blank');
   }
 
   public bubbleChartOptions: ChartOptions = {

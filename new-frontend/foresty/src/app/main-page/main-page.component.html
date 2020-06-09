@@ -92,7 +92,7 @@
             mat-raised-button
             color="accent"
             class="mt-5"
-            [routerLink]="['plot', leshos.id, plot.number]"
+            [routerLink]="['/plot', leshos.id, plot.number]"
           >
             Перейти к стационару
           </button>
@@ -101,12 +101,70 @@
       <div class="container d-flex flex-column">
         <div class="col">
           <div class="text-center h5">Основные таксационные показатели</div>
+          <div>
+        <mat-slide-toggle
+          (change)="mapType === 1 ? (mapType = 2) : (mapType = 1)"
+          >Изменить вид</mat-slide-toggle
+        >
+      </div>
         </div>
         <mat-tab-group>
           <mat-tab
             *ngFor="let structure of plot.structureStat; let index = index"
             [label]="structure.taxationYear"
           >
+          <div *ngIf="mapType === 1">
+          <div class="overflow-hidden">
+          <table class="text-white" >
+              <tbody>
+                <tr>
+                  <td rowspan="3" class="reverse-text">Ярус</td>
+                  <td rowspan="3" class="reverse-text">Элемент леса</td>
+                  <td rowspan="3" class="reverse-text">Коэфицент состава</td>
+                  <td rowspan="3" class="reverse-text">Возраст</td>
+                  <td rowspan="3" class="reverse-text">Средняя высота, м</td>
+                  <td rowspan="3" class="reverse-text">Диаметр см</td>
+                  <td rowspan="3" class="reverse-text">Сумма площадей сечений</td>
+                  <td rowspan="3" class="reverse-text">Полнота</td>
+                  <td rowspan="3" class="reverse-text">Класс бонитета</td>
+                  <td rowspan="3" class="reverse-text">ТУМ</td>
+                  <td colspan="5" class="text-center">Запас, м</td>
+                  <td rowspan="3" class="reverse-text">% выхода деловой древесины</td>
+                </tr>
+                <tr>
+                  <td colspan="2">растущ. дерев</td>
+                  <td rowspan="2" class="reverse-text">Сухостойных</td>
+                  <td colspan="2">захламлен.</td>
+                </tr>
+                <tr>
+                  <td class="reverse-text">итого</td>
+                  <td class="reverse-text">в т н. усых.</td>
+                  <td class="reverse-text">общ</td>
+                  <td class="reverse-text">в т н. ликв.</td>
+                </tr>
+                <tr class="text-center" *ngFor="let breed of structure.breedNames; let i = index">
+                  <td></td>
+                  <td>{{plot.breedStat | headerByIndex : i}}</td>
+                  <td></td>
+                  <td>{{structure.ageStat | toTableData : breed | number}}</td>
+                  <td>{{structure.lengthStat | toTableData : breed | number}}</td>
+                  <td>{{structure.diametrStat | toTableData : breed | number}}</td>
+                  <td>{{structure.sechenStat | toTableData : breed | number}}</td>
+                  <td>{{structure.polnotaStat | toTableData : breed | number}}</td>
+                  <td></td>
+                  <td>{{plot.tumName}}</td>
+                  <td>{{structure.breedTechGodn | toTableData : breed : 0 }}</td>
+                  <td></td>
+                  <td>{{structure.breedTechGodn | toTableData : breed : 1 }}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div *ngIf="mapType === 2">
           <div class="col d-flex justify-content-between">
             <div class="h6">Запас деревьев:</div>
             <div> 
@@ -183,6 +241,7 @@
                 </canvas>
               </div>
             </div>
+          </div>
           </mat-tab>
         </mat-tab-group>
       </div>
